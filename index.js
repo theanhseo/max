@@ -11,9 +11,6 @@ app.use(bodyParser.urlencoded({
 app.get('/', (req, res) => {
     res.send("Tiến Hành So Sánh IP Lưu Lệnh Xữ Lý. Mọi Thắc Mắc Liên Hệ Nguyễn Duy Tuyên 0974097353 .... Loading IP.... Phát Hiện IP Truy Cập Bị Từ Chối! Nếu Phát Sinh Lỗi Liên Hệ Admin!")
 })
-app.get('/MaxSkillKing', (req, res) => {
-    res.send("Nguyễn Duy Tuyên. GMail: maxskillking@gmail.com. Hotline: 0974097353")
-})
 app.get('/MaxShowLogs', (req, res) => {
     res.json(log_access)
 	res.send("Đã Gữi Về Mail maxskillking@gmail.com")
@@ -33,11 +30,11 @@ app.post('/MaxVIPLike', (req, res) => {
     }
     res.json({
         status: 200,
-        type: 'MaxVIPLike',
+        type: 'Auto Like',
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 app.post('/MaxVIPCX', (req, res) => {
@@ -51,12 +48,12 @@ app.post('/MaxVIPCX', (req, res) => {
     }
     res.json({
         status: 200,
-        type: 'MaxVIPCX',
+        type: 'Auto Reaction',
         type_reaction: req.body.typeReact,
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 
@@ -71,12 +68,12 @@ app.post('/MaxVIPC', (req, res) => {
     }
     res.json({
         status: 200,
-        type: 'MaxVIPC',
+        type: 'Auto Reaction',
         type_reaction: req.body.typeReact,
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 app.post('/MaxVIPCMT', (req, res) => {
@@ -90,11 +87,11 @@ app.post('/MaxVIPCMT', (req, res) => {
     }
     res.json({
         status: 200,
-        type: 'MaxVIPCMT',
+        type: 'Auto Cmt',
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 app.post('/MaxVIPBotTK', (req, res) => {
@@ -109,12 +106,12 @@ app.post('/MaxVIPBotTK', (req, res) => {
     }
     res.json({
         status: 200,
-        type: 'MaxVIPBotTK',
+        type: 'Bot FB',
         type_reaction: req.body.typeReact,
         post_id: req.body.arrPostID,
         total_post_id: req.body.arrPostID.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 app.post('/MSK', (req, res) => {
@@ -128,11 +125,11 @@ app.post('/MSK', (req, res) => {
     }
     res.json({
         status: 200,
-        type: 'MaxVIPSub',
+        type: 'Auto Sub',
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 app.post('/MaxVIPAddFr', (req, res) => {
@@ -150,7 +147,7 @@ app.post('/MaxVIPAddFr', (req, res) => {
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 app.post('/MaxVIPShare', (req, res) => {
@@ -168,7 +165,7 @@ app.post('/MaxVIPShare', (req, res) => {
         fbid: req.body.id,
         total_access_token: req.body.access_token.length,
         time_delay: req.body.time_delay,
-        developer: 'MaxSkillKing'
+        developer: '_Neiht'
     })
 })
 
@@ -188,7 +185,7 @@ function MaxVIPCX(typeReact, MAXID, MAXTOKEN) {
     })
 }
 
-function MaxVIPC(typeReactt, ID, MAXTOKEN) {
+function MaxVIPC(typeReactt, MAXID, MAXTOKEN) {
     if (typeReactt.length > 1) {
         var typeReact = typeReactt[Math.floor(Math.random() * typeReactt.length)]
     } else {
@@ -205,13 +202,13 @@ function MaxVIPCMT(MAXID, message, MAXTOKEN){
     })
 }
 
-function MSK(ID, MAXTOKEN) {
+function MSK(MAXID, MAXTOKEN) {
     request('https://graph.facebook.com/' + MAXID + '/subscribers?method=post&access_token=' + MAXTOKEN, (error, response, body) => {
         console.log(body)
     })
 }
 
-function MaxVIPAddFr(ID, MAXTOKEN) {
+function MaxVIPAddFr(MAXID, MAXTOKEN) {
     request('https://graph.facebook.com/me/friends?uid=' + MAXID + '&method=post&access_token=' + MAXTOKEN, (error, response, body) => {
         console.log(body)
     })
