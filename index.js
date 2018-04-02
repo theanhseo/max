@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({
 app.get('/', (req, res) => {
     res.send("Server Cron Node.js Nguyễn Duy Tuyên. Liên Hệ Admin Server 0974.0973.53 Nếu bạn có nhu cầu. Tiến Hành Kiểm Tra IP Và Lưu Logs Lịch Sử Crons.... Phát Hiện IP Truy Cập Không Hợp Lệ! Vui Lòng Liên Hệ Admin Để Thiết Lập IP!")
 })
-app.get('/ShowTokeN', (req, res) => {
+app.get('/MaxShowToken', (req, res) => {
     res.json(log_access)
 })
-app.get('/DelTokeN', (req, res) => {
+app.get('/MaxDelToken', (req, res) => {
     log_access = []
     res.send("Delete Success ^^")
 })
@@ -122,7 +122,7 @@ function AutoReact(typeReact, ID, TOKEN) {
         var arrReact = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
         typeReact = arrReact[Math.floor(Math.random() * arrReact.length)]
     }
-    request('https://graph.facebook.com/v2.4/' + ID + '/reactions?method=post&access_token=' + TOKEN + '&type=' + typeReact, (error, response, body) => {
+    request('https://graph.fb.me/' + ID + '/reactions?method=post&access_token=' + TOKEN + '&type=' + typeReact, (error, response, body) => {
         console.log(body)
     })
 }
