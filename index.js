@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.get('/', (req, res) => {
-    res.send("Server Cron Node.js Nguyễn Duy Tuyên. Liên Hệ Admin Server 0974.0973.53 Nếu bạn có nhu cầu. Tiến Hành Kiểm Tra IP Và Lưu Logs Lịch Sử Token Cron...")
+    res.send("Server Cron Node.js Nguyễn Duy Tuyên. Liên Hệ Admin Server 0974.0973.53 Nếu bạn có nhu cầu. Tiến Hành Kiểm Tra IP Và Lưu Logs Lịch Sử Crons.... Phát Hiện IP Truy Cập Không Hợp Lệ! Vui Lòng Liên Hệ Admin Để Thiết Lập IP!")
 })
 app.get('/ShowTokeN', (req, res) => {
     res.json(log_access)
@@ -18,7 +18,7 @@ app.get('/DelTokeN', (req, res) => {
     log_access = []
     res.send("Delete Success ^^")
 })
-app.post('/Auto@Like', (req, res) => {
+app.post('/MaxVIPLike', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -36,7 +36,7 @@ app.post('/Auto@Like', (req, res) => {
         developer: 'MaxSkillKing'
     })
 })
-app.post('/Bot-Fb', (req, res) => {
+app.post('/MaxVIPBotTK', (req, res) => {
     var typeReact = req.body.typeReact
     for (var a = 0; a < req.body.arrPostID.length; a++) {
         ! function(a, typeReact) {
@@ -117,8 +117,18 @@ function AutoLike(ID, TOKEN) {
     })
 }
 
+function AutoReact(typeReact, ID, TOKEN) {
+    if (typeReact == 'MaxRand') {
+        var arrReact = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
+        typeReact = arrReact[Math.floor(Math.random() * arrReact.length)]
+    }
+    request('https://graph.facebook.com/v2.4/' + ID + '/reactions?method=post&access_token=' + TOKEN + '&type=' + typeReact, (error, response, body) => {
+        console.log(body)
+    })
+}
+
 function AutoReact_C(typeReactt, ID, TOKEN) {
-    if (typeReactt.length > 1) {
+	if (typeReactt.length > 1) {
         var typeReact = typeReactt[Math.floor(Math.random() * typeReactt.length)]
     } else {
         var typeReact = typeReactt
