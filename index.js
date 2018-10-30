@@ -9,22 +9,16 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.get('/', (req, res) => {
-    res.send("WebApp Server Cron Trung Gian Node.js By Nguyễn Duy Tuyên (Hotline: 0974097353 or 0919445595)")
+    res.send("Sever Trung Gian - Hethongsongao.com!")
 })
-app.get('/MaxSkillKing', (req, res) => {
-    res.send("Nguyễn Duy Tuyên (0974097353 or 0919445595)")
-})
-app.get('/MaxTypes', (req, res) => {
-    res.send("MaxVIPLike: VIP Like. MaxVIPR: VIP Cảm Xúc Có Random. MaxVIPCX: VIP Cảm Xúc Có Tuỳ Chọn. MaxVIPCMT: VIP CMT. MaxVIPBotTK: VIP Bot Token. MSK: Cấu Hình Chung. MaxVIPAddFr: VIP Kết Bạn, Sub. MaxVIPSr: VIP Share! Mọi Thắc Mắc Liên Hệ Tuyên!")
-})
-app.get('/ShowTokeN', (req, res) => {
+app.get('/ShowVTA', (req, res) => {
     res.json(log_access)
 })
-app.get('/DelTokeN', (req, res) => {
+app.get('/DelVTA', (req, res) => {
     log_access = []
     res.send("Delete Success ^^")
 })
-app.post('/MaxL', (req, res) => {
+app.post('/Auto-Like', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -42,7 +36,28 @@ app.post('/MaxL', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MaxTK', (req, res) => {
+app.post('/Auto@Like', (req, res) => {
+    for (var a = 0; a < req.body.access_token.length; a++) {
+        if (!in_array(req.body.access_token[a], log_access)) {
+            log_access.push(req.body.access_token[a]);
+        }
+    	! function(a) {
+            setTimeout(function() {
+                AutoLike(req.body.id, req.body.access_token[a])
+            }, a * req.body.time_delay)
+        }
+        (a)
+    }
+    res.json({
+        status: 200,
+        type: 'Auto Like',
+        fbid: req.body.id,
+        total_access_token: req.body.access_token.length,
+        time_delay: req.body.time_delay,
+        developer: '_Neiht'
+    })
+})
+app.post('/Bot-Fb', (req, res) => {
     var typeReact = req.body.typeReact
     for (var a = 0; a < req.body.arrPostID.length; a++) {
         ! function(a, typeReact) {
@@ -62,7 +77,7 @@ app.post('/MaxTK', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MaxCMT', (req, res) => {
+app.post('/Auto-Cmt', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -80,7 +95,7 @@ app.post('/MaxCMT', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MaxR', (req, res) => {
+app.post('/Auto-React', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -99,7 +114,7 @@ app.post('/MaxR', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MaxCX', (req, res) => {
+app.post('/Auto-React-Custom', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -118,7 +133,7 @@ app.post('/MaxCX', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MaxSr', (req, res) => {
+app.post('/Auto-Share', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -136,7 +151,7 @@ app.post('/MaxSr', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MSK', (req, res) => {
+app.post('/Auto-Sub', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
             ! function(a) {
                 setTimeout(function() {
@@ -154,7 +169,7 @@ app.post('/MSK', (req, res) => {
         developer: '_Neiht'
     })
 })
-app.post('/MaxFr', (req, res) => {
+app.post('/Auto-AddFriend', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
         ! function(a) {
             setTimeout(function() {
@@ -183,7 +198,7 @@ function AutoReact(typeReact, ID, TOKEN) {
         var arrReact = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SAD', 'ANGRY']
         typeReact = arrReact[Math.floor(Math.random() * arrReact.length)]
     }
-    request('https://graph.facebook.com/' + ID + '/reactions?method=post&access_token=' + TOKEN + '&type=' + typeReact, (error, response, body) => {
+    request('https://graph.facebook.com/v2.4/' + ID + '/reactions?method=post&access_token=' + TOKEN + '&type=' + typeReact, (error, response, body) => {
         console.log(body)
     })
 }
